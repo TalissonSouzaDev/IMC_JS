@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <title>Tabuada</title>
+    <title>IMC</title>
 </head>
 <body>
 
     <main>
         <div class="container">
             <div class="container-left">
-                <h1>Tabuada</h1>
+                <h1>IMC</h1>
                 <form >
                     <div class="form-group">
-                        <input type="number" name="numero" id="numero" placeholder="Digite o numero a ser calculado">
+                        <input type="text" name="altura" id="altura" placeholder="Digite sua altura">
                     </div>
                     <div class="form-group">
-                        <select name="operacao" id="operacao">
-                            <option> Selecione uma Operação</option>
-                            <option value="+">+</option>
-                            <option value="-">-</option>
-                            <option value="x">x</option>
-                            <option value="/">/</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" name="tm_tabuada" id="tm_tabuada" placeholder="Digite o tamanho da tabuada">
+                        <input type="number" name="peso" id="peso" placeholder="Digite seu peso">
                     </div>
                     <div class="form-group">
                         <input type="submit" name="submit" id="submit" value="Calcular">
                     </div>
                 </form>
 
-                <div class="container-tabuada" id="container-tabuada">
-                   
+                <div class="container-imc" id="container-imc">
+                    
                 </div>
             </div>
             <div class="container-right">
-                <img src="img/imgtabu.png" alt="tabuada">
+                <img src="img/imc.png" alt="imc">
             </div>
         </div>
     </main>
+    <script>
+
+
+        $(document).ready(function(){
+        $('#altura').mask('0.00',{reverse: true});
+        $('#peso').mask('000.00',{reverse: true});
+      });
+    </script>
     <script src="js/app.js"></script>
 </body>
 </html>

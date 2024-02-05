@@ -1,71 +1,64 @@
 const btnsubmit =  document.querySelector("#submit");
-const numero =  document.querySelector("#numero");
-const operacao =  document.querySelector("#operacao");
-const tm_tabuada =  document.querySelector("#tm_tabuada");
-let  span =  document.getElementById("container-tabuada")
+const altura =  document.querySelector("#altura");
+const peso =  document.querySelector("#peso");
+let  span =  document.getElementById("container-imc")
 
 
 btnsubmit.addEventListener("click",(e)=>{
     e.preventDefault()
-    span.style.visibility = "visible"
     span.innerHTML = ""
-    Tabuada(tm_tabuada.value,numero.value,operacao.value)
+    WriteLineOption(altura.value,peso.value)
 
 })
 
-
-async function Tabuada(tamanhotab,numerocalc,operacao) 
-{
-    switch(operacao)
+    function WriteLineOption(alturaImc,pesoImc)
     {
-        case '+':
-             WriteLineOption(tamanhotab,numerocalc,operacao)
-            break
-        case '-':
-            WriteLineOption(tamanhotab,numerocalc,operacao)
-            break
-        case 'x':
-            WriteLineOption(tamanhotab,numerocalc,operacao)
-            break
-        case '/':
-            WriteLineOption(tamanhotab,numerocalc,operacao)
-            break
-        default:
-            alert("Não consegui indentifica seu pedido")
-    }
+       
+            let imc =  parseFloat(pesoImc) / (parseFloat(alturaImc) * parseFloat(alturaImc))
+            imc = imc.toFixed(1)
+            console.log(imc)
 
-    function WriteLineOption(tamanhotab,numerocalc,operacao)
-    {
-        for(i = 0; i < tamanhotab; i++)
-        {
-            let operation =  0;
-           if(operacao == '+')
+            var messagem = ""
+           if(imc < 19)
            {
-            operation = (i+1) + parseFloat(numerocalc)
+            messagem =  "Você esta muito abaixo do peso"
+            span.style.backgroundColor  = "#9fc5e8"
            }
-           else if(operacao == '-')
+           else if(imc > 18.5 && imc <= 25.9)
            {
-            operation =  (i+1) - parseFloat(numerocalc)
+            messagem =  "Você esta no peso adequado"
+            span.style.backgroundColor  = "#93c47d"
            }
-           else if(operacao == 'x')
+           else if(imc >= 25 && imc <= 29.9)
            {
-            operation = (i+1) * parseFloat(numerocalc)
+            messagem =  "Você esta no sobrepeso"
+            span.style.backgroundColor  = "#ffe599"
 
            }
-           else if(operacao == '/')
+           else if(imc >= 30 && imc <= 34.9)
            {
-            operation = parseFloat(numerocalc) / (i+1) 
+            messagem =  "Você esta na obesidade grau 1"
+            span.style.backgroundColor  = "#e69138"
          
           
            }
-            
-            span.innerHTML += `<span>${(i+1)}  ${operacao} ${numerocalc} = ${operacao == '/' ? operation.toFixed(1) : operation} </span>`
+           else if(imc >= 35 && imc <=39.9)
+           {
+            messagem =  "Você esta na obesidade grau 2"
+            span.style.backgroundColor  = "#dd4e1c"
+         
+          
+           }
+           else
+           {
+            messagem =  "Você esta na obesidade extrema"
+            span.style.backgroundColor  = "#c7381e"
+         
+           } 
+           altura.value = ""
+           peso.value = ""
+            span.innerHTML = `<span>sua media atual é ${imc} ${messagem}</span>`
 
-        }
+     
     }
 
-    
-    
-
-
-}
